@@ -16,14 +16,14 @@ describe('Controller: UmmCtrl', function () {
     });
     movieList = [];
       //The following httpBackend things will determine what will happen when an http request is called during our tests
-    httpBackend.when('POST', '/api/movies').respond(function(method, url, data, headers) {
-        movieList.push(JSON.parse(data));
+    httpBackend.when('POST', '/api/courses').respond(function(method, url, data, headers) {
+        courseList.push(JSON.parse(data));
         return [200, {}, {}];
     });
-    httpBackend.when('GET', '/api/movies').respond(movieList);
+    httpBackend.when('GET', '/api/courses').respond(courseList);
       //The 1 is for identifying the _id on the movie in the "database"
-    httpBackend.when('DELETE', '/api/movies/1').respond(function() {
-        movieList.splice(movieList.indexOf({name:"Batman", rating:9}),1);
+    httpBackend.when('DELETE', '/api/courses/1').respond(function() {
+        courseList.splice(courseList.indexOf({title:"CSCI", grade:"B", credit: 4}),1);
         return [200, {}, {}];
     });
   }));
@@ -34,9 +34,10 @@ describe('Controller: UmmCtrl', function () {
 
   describe('testing add and delete from the database', function() {
       it('should add a new movie "Batman" with a rating of 9 and return it', function() {
-          scope.newMovie = "Batman";
-          scope.newRating = 9;
-          scope.addMovie();
+          scope.newCourse = "CSCI";
+          scope.newGrade = "B";
+          scope.newCredit = 4;
+          scope.addCourse();
           //all of the http requests are added into a queue and are all run when the flush() method is called
           httpBackend.flush();
           expect(movieList[0]).toEqual({name:"Batman", rating:9});

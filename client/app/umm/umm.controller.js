@@ -2,32 +2,33 @@
 
 angular.module('yeoMeanApp')
   .controller('UmmCtrl', function ($scope, $http) {
-    $scope.movieList = [];
+    $scope.courseList = [];
 
-    //Update movieList to have the same data that's in the database on the sever
-    $http.get('/api/movies').success(function(movieList) {
-        $scope.movieList = movieList;
+    //Update courseList to have the same data that's in the database on the sever
+    $http.get('/api/courses').success(function(courseList) {
+        $scope.courseList = courseList;
     });
 
-    $scope.addMovie = function() {
-        if($scope.newMovie === ''  || $scope.newRating === '') {
+    $scope.addCourse = function() {
+        if($scope.newTitle === ''  || $scope.newGrade === '' || $scope.newCredit === '') {
             return;
         }
-        $http.post('/api/movies', { name: $scope.newMovie, rating: $scope.newRating }).success(function(){
-            //Update movieList to have the same data that's in the database on the sever
-            $http.get('/api/movies').success(function(movieList) {
-                $scope.movieList = movieList;
+        $http.post('/api/courses', { title: $scope.newTitle, grade: $scope.newGrade, credit: $scope.newCredit }).success(function(){
+            //Update courseList to have the same data that's in the database on the sever
+            $http.get('/api/courses').success(function(courseList) {
+                $scope.courseList = courseList;
             });
-            $scope.newMovie = '';
-            $scope.newRating = '';
+            $scope.newTitle = '';
+            $scope.newGrade = '';
+            $scope.newCredit ='';
         });
     };
 
-    $scope.deleteMovie = function(movie) {
-        $http.delete('/api/movies/' + movie._id).success(function(){
-            //Update movieList to have the same data that's in the database on the sever
-            $http.get('/api/movies').success(function(movieList) {
-                $scope.movieList = movieList;
+    $scope.deleteCourse = function(course) {
+        $http.delete('/api/courses/' + course._id).success(function(){
+            //Update courseList to have the same data that's in the database on the sever
+            $http.get('/api/courses').success(function(courseList) {
+                $scope.courseList = courseList;
             });
         });
     };
