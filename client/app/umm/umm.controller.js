@@ -10,7 +10,7 @@ angular.module('yeoMeanApp')
     });
 
         function ClassCtrl($scope) {
-            $scope.convertGradeToGPA = function (grade) {
+            $scope.convertGradeToGPA = function(grade) {
                 switch (grade) {
                     case "A":
                         return 4;
@@ -50,43 +50,44 @@ angular.module('yeoMeanApp')
                         break;
                     default:
                         return 0;
-                }
-                ;
+                };
             };
-        };
 
-    $scope.addCourse = function() {
-        if($scope.newTitle === ''  || $scope.newGrade === '' || $scope.newCredit === '') {
-            return;
-        }
-        $http.post('/api/courses', { title: $scope.newTitle, grade: $scope.newGrade, credit: $scope.newCredit }).success(function(){
-            //Update courseList to have the same data that's in the database on the server
-            $http.get('/api/courses').success(function(courseList) {
-                $scope.courseList = courseList;
-            });
-            $scope.newTitle = '';
-            $scope.newGrade = '';
-            $scope.newCredit ='';
-        });
-    };
-
-    $scope.deleteCourse = function(course) {
-        $http.delete('/api/courses/' + course._id).success(function(){
-            //Update courseList to have the same data that's in the database on the sever
-            $http.get('/api/courses').success(function(courseList) {
-                $scope.courseList = courseList;
-            });
-        });
-    };
-
-            $scope.calculateGPA = function () {
+            $scope.calculateGPA = function() {
                 var gradePoints = 0;
+                console.log(gradePoints);
                 var credits = 0;
-                for(i = 0; i < $scope.courseList.length; i++){
+                for(var i = 0; i < $scope.courseList.length; i++){
                     gradePoints += $scope.convertGradeToGPA($scope.courseList[i].grade);
                     credits += $scope.courseList[i].credit;
+                    console.log(gradePoints);
                 }
                 return gradePoints/credits;
-            }
+            };
 
+     };
+
+        $scope.addCourse = function() {
+            if($scope.newTitle === ''  || $scope.newGrade === '' || $scope.newCredit === '') {
+                return;
+            }
+            $http.post('/api/courses', { title: $scope.newTitle, grade: $scope.newGrade, credit: $scope.newCredit }).success(function(){
+                //Update courseList to have the same data that's in the database on the server
+                $http.get('/api/courses').success(function(courseList) {
+                    $scope.courseList = courseList;
+                });
+                $scope.newTitle = '';
+                $scope.newGrade = '';
+                $scope.newCredit ='';
+            });
+        };
+
+        $scope.deleteCourse = function(course) {
+            $http.delete('/api/courses/' + course._id).success(function(){
+                //Update courseList to have the same data that's in the database on the sever
+                $http.get('/api/courses').success(function(courseList) {
+                    $scope.courseList = courseList;
+                });
+            });
+        };
   });
