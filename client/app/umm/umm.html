@@ -3,7 +3,7 @@
 <header class="hero-unit" id="banner">
     <div class="container">
         <h1>GPA Calculator</h1>
-        <p class="lead">A site to calculate your GPA. <br /><small>Designed by Mitch Finzel, Brandon Moody, Maggie C and Savannah Farm.</small></p>
+        <p class="lead">A site to calculate your GPA. <br /><small>Designed by Mitch Finzel, Brandon Moody and Maggie Casale</small></p>
     </div>
 </header>
 
@@ -18,7 +18,7 @@
             <h3>Add A Course:</h3>
             <form role="form" ng-submit="addCourse()">
                 <label for="=courseTitle">New Course Title</label>
-                <input class="form-control" id="courseTitle" type="text" ng-model="newCourse" size="30" placeholder="New Course Title">
+                <input class="form-control" id="courseTitle" type="text" ng-model="newTitle" size="30" placeholder="New Course Title">
                 <label for="courseGrade">New Course Grade</label>
                 <input class="form-control" id="courseGrade" type="text" ng-model="newGrade" placeholder="New Course Grade (A-F)">
                 <label for="=courseCredit">New Course Credit</label>
@@ -27,7 +27,10 @@
             </form>
         </div>
     </div>
+    <div>Your GPA is: {{calculateGPA()}}</div>
 </div>
+
+
 
 <footer class="footer">
     <div class="container">
