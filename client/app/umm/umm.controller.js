@@ -12,44 +12,44 @@ angular.module('yeoMeanApp')
       //  function ClassCtrl($scope) {
             $scope.convertGradeToGPA = function(grade) {
                 switch (grade) {
-                    case "A":
+                    case "A","a":
                         return 4.0;
                         break;
-                    case "A-":
+                    case "A-","a-":
                         return 3.7;
                         break;
-                    case "B+":
+                    case "B+","b+":
                         return 3.33;
                         break;
-                    case "B":
+                    case "B","b":
                         return 3.0;
                         break;
-                    case "B-":
+                    case "B-","b-":
                         return 2.7;
                         break;
-                    case "C+":
+                    case "C+","c+":
                         return 2.3;
                         break;
-                    case "C":
+                    case "C","c":
                         return 2.0;
                         break;
-                    case "C-":
+                    case "C-","c-":
                         return 1.7;
                         break;
-                    case "D+":
+                    case "D+","d+":
                         return 1.3;
                         break;
-                    case "D":
+                    case "D","d":
                         return 1.0;
                         break;
-                    case "D-":
+                    case "D-","d-":
                         return 0.7;
                         break;
-                    case "F":
+                    case "F","f":
                         return 0;
                         break;
                     default:
-                        return 0;
+                        return null;
                 };
             };
 
@@ -58,7 +58,11 @@ angular.module('yeoMeanApp')
                 var credits = 0;
                 for(var i = 0; i < $scope.courseList.length; i++){
                     gradePoints += $scope.convertGradeToGPA($scope.courseList[i].grade) * $scope.courseList[i].credit;
-                    credits += $scope.courseList[i].credit;
+                    if($scope.convertGradeToGPA($scope.courseList[i].grade)==null){
+                        credits += 0;
+                    }else {
+                        credits += $scope.courseList[i].credit;
+                    }
                     console.log(gradePoints);
                 }
                 if(credits == 0){
@@ -83,6 +87,7 @@ angular.module('yeoMeanApp')
             });
         };
 
+
         $scope.deleteCourse = function(course) {
             $http.delete('/api/courses/' + course._id).success(function(){
                 //Update courseList to have the same data that's in the database on the sever
@@ -91,4 +96,14 @@ angular.module('yeoMeanApp')
                 });
             });
         };
-  });
+
+        $scope.editCourse = function(course) {
+            $http.findAndModify('/api/courses/' + course._id).success(function(){
+                //Update courseList to have the same data that's in the database on the sever
+                $http.get('/api/courses').success(function(courseList) {
+                    $scope.courseList = courseList;
+                });
+            });
+        }
+
+    });
