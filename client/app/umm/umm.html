@@ -14,19 +14,18 @@
             <ul ng-repeat="course in courseList">
                 <li>Title: {{course.title}}, Grade: {{course.grade}}, Credit: {{course.credit}}
                     <button class="btn btn-xs btn-danger" ng-click="deleteCourse(course)">Delete</button>
-                    <button class="btn btn-xs btn-danger" ng-click="editCourse(course)">Edit</button>
                 </li>
             </ul>
             <hr>
             <h3>Add A Course:</h3>
             <form role="form" ng-submit="addCourse()">
-                <label for="=courseTitle">New Course Title</label>
+                <label for="courseTitle">New Course Title</label>
                 <input class="form-control" id="courseTitle" type="text" ng-model="newTitle" size="30" placeholder="New Course Title">
                 <label for="courseGrade">New Course Grade</label>
                 <input class="form-control" id="courseGrade" type="text" ng-model="newGrade" placeholder="New Course Grade (A-F)">
-                <label for="=courseCredit">New Course Credit</label>
+                <label for="courseCredit">New Course Credit</label>
                 <input class="form-control" id="courseCredit" type="number" max="5" min="1" ng-model="newCredit" size="30" placeholder="New Course Credit (1-5)">
-                <input class="btn btn-primary" type="submit" value="Add">
+                <input class="btn btn-primary" type="submit" value="Add / Update">
             </form>
         </div>
     </div>

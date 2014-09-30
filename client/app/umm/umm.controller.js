@@ -12,40 +12,40 @@ angular.module('yeoMeanApp')
       //  function ClassCtrl($scope) {
             $scope.convertGradeToGPA = function(grade) {
                 switch (grade) {
-                    case "A","a":
+                    case "A":
                         return 4.0;
                         break;
-                    case "A-","a-":
+                    case "A-":
                         return 3.7;
                         break;
-                    case "B+","b+":
+                    case "B+":
                         return 3.33;
                         break;
-                    case "B","b":
+                    case "B":
                         return 3.0;
                         break;
-                    case "B-","b-":
+                    case "B-":
                         return 2.7;
                         break;
-                    case "C+","c+":
+                    case "C+":
                         return 2.3;
                         break;
-                    case "C","c":
+                    case "C":
                         return 2.0;
                         break;
-                    case "C-","c-":
+                    case "C-":
                         return 1.7;
                         break;
-                    case "D+","d+":
+                    case "D+":
                         return 1.3;
                         break;
-                    case "D","d":
+                    case "D":
                         return 1.0;
                         break;
-                    case "D-","d-":
+                    case "D-":
                         return 0.7;
                         break;
-                    case "F","f":
+                    case "F":
                         return 0;
                         break;
                     default:
@@ -76,6 +76,7 @@ angular.module('yeoMeanApp')
             if($scope.newTitle === ''  || $scope.newGrade === '' || $scope.newCredit === '') {
                 return;
             }
+
             $http.post('/api/courses', { title: $scope.newTitle, grade: $scope.newGrade, credit: $scope.newCredit }).success(function(){
                 //Update courseList to have the same data that's in the database on the server
                 $http.get('/api/courses').success(function(courseList) {
@@ -98,7 +99,7 @@ angular.module('yeoMeanApp')
         };
 
         $scope.editCourse = function(course) {
-            $http.findAndModify('/api/courses/' + course._id).success(function(){
+            $http.put('/api/courses/' + course._id).success(function(){
                 //Update courseList to have the same data that's in the database on the sever
                 $http.get('/api/courses').success(function(courseList) {
                     $scope.courseList = courseList;

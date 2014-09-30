@@ -51,9 +51,31 @@ Along the way, *add at least two tests*. This week, I think you should be able t
 
 Update your README to include the following documentation that would help someone understand your project:
 * What are some of the dependencies of the project (i.e. which libraries does it depend on)? Hint: dependencies are in .json files. Look up four libraries and briefly explain what they each do.
+    Express - A Node.js web application framework that provides features for web applications.
+    Morgan - An http request logger middleware for Node.js.
+    Mongoose - A MongoDB object modeling tool designed to work in an asynchronous environment.
+    Grunt - The JavaScript task runner.
+
 * What is the structure of the project? What is the purpose of each folder?
+    The structure of the project is several folders that separate the views from models and the whatever ;)
+    The API course folder contains the functions for accessing and modifying the database and the routing instructions.
+    The app/umm folder contains the view and functions pertaining to the GPA calculations.
+
 * What are models? Where are they located? What does the current model describe?
+    A model is the back end of the application and handles the functionality that a user doesn't deal with directly. In this case, they are located in the server folder.
+    The current model describes a database that stores course information that is crucial to GPA calculation.
+
 * What are views? Where are they located? What is a layout? What is a partial? Identify places where a layout renders partials.
+    A view is the front end of an application that contains content that a user directly interacts with such as features. In this case, they are located in the app folder.
+    A layout is the "default" structure of the view. A partial is a more detailed structure that is displayed within a layout at certain times. In our project, the different
+        courses make up the partial whereas the list of courses is defined by the layout.
+
 * schemas describe mongodb database schemas. What schema does your project have? What gets stored in the database?
+    We have courseSchema. An object containing a title, grade, and credit value is stored within it.
+
 * What are routes? Open the route. Explain how each type of request gets processed. How does the resulting page change? How does the data in the database change?
+
+
 * Explain how the result GPA result is calculated and how it gets rendered on the page.
+    The GPA is calculated by taking the grade and changes it to the "grade point" where it then is multiplied by the credit for the course. Then summing all these values for all of the courses and then dividing that total by the total number of credits. This is rendered by Angular two-way data-binding that calls our GPA calculation.
+
