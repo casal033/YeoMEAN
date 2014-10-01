@@ -7,7 +7,7 @@
     </div>
 </header>
 
-<div class="container" ng-controller="UmmCtrl">
+<div class="container" id="courseBody" ng-controller="UmmCtrl">
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Courses:</h1>
@@ -25,7 +25,7 @@
                 <input class="form-control" id="courseGrade" type="text" ng-model="newGrade" placeholder="New Course Grade (A-F)">
                 <label for="courseCredit">New Course Credit</label>
                 <input class="form-control" id="courseCredit" type="number" max="5" min="1" ng-model="newCredit" size="30" placeholder="New Course Credit (1-5)">
-                <input class="btn btn-primary" type="submit" value="Add / Update">
+                <input class="btn btn-primary" id="button" type="submit" value="Add / Update">
             </form>
         </div>
     </div>
