@@ -74,10 +74,8 @@ Update your README to include the following documentation that would help someon
     We have courseSchema. An object containing a title, grade, and credit value is stored within it.
 
 * What are routes? Open the route. Explain how each type of request gets processed. How does the resulting page change? How does the data in the database change?
-    They are directions for how to process requests pertaining to files in other locations.
-    The request is received and referenced to the routes where it is then sent on to the relevant location.
+    Routes are the web addresses for your website, and they allow an app to access the mongo database. When a add or delete button is pressed javascript will update the local array, and then changes the array within the mongo database.
     
-
 * Explain how the result GPA result is calculated and how it gets rendered on the page.
     The GPA is calculated by taking the grade and changes it to the "grade point" where it then is multiplied by the credit for the course. Then summing all these values for all of the courses and then dividing that total by the total number of credits. This is rendered by Angular two-way data-binding that calls our GPA calculation.
 
